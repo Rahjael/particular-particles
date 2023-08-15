@@ -1,0 +1,6 @@
+/__pycache__/
+/generated_videos/
+/temp/
+initial_particles_state.json
+test_img.png
+.vscode
