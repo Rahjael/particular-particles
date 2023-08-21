@@ -29,45 +29,47 @@ class Renderer():
 
         pygame.display.update()
         pygame.image.save(self.display, filename)
-        # pygame.image.save(self.display, f'{self.temp_path}{self.seed}_{str(iteration_num).zfill(8)}.png')
+        
+    def cleanup(self):
+        pygame.quit()
+        # TODO add other calls to cleanup temp files
 
-
-def draw_gradient_frame(surface, surface_width, surface_height, position):
-    if position == 'left':
-        width = int(min(surface_width, surface_height) * 0.2)
-        height = surface_height
-        for x in range(width):
-            # Calculate alpha value based on x position
-            alpha = 255 - int((x / width) * 255)
-            strip = pygame.Surface((1, height), pygame.SRCALPHA)
-            strip.fill((255, 255, 255, alpha))  # Set the color with alpha
-            surface.blit(strip, (x, 0))  # Draw the rectangle onto the screen
-    if position == 'right':
-        width = int(min(surface_width, surface_height) * 0.2)
-        height = surface_height
-        for x in range(width):
-            # Calculate alpha value based on x position
-            alpha = int((x / width) * 255)
-            strip = pygame.Surface((1, height), pygame.SRCALPHA)
-            strip.fill((255, 255, 255, alpha))  # Set the color with alpha
-            # Draw the rectangle onto the screen
-            surface.blit(strip, ((surface_width - width) + x, 0))
-    if position == 'top':
-        width = surface_width
-        height = int(min(surface_width, surface_height) * 0.2)
-        for y in range(height):
-            # Calculate alpha value based on x position
-            alpha = 255 - int((y / height) * 255)
-            strip = pygame.Surface((width, 1), pygame.SRCALPHA)
-            strip.fill((255, 255, 255, alpha))  # Set the color with alpha
-            surface.blit(strip, (0, y))  # Draw the rectangle onto the screen
-    if position == 'bottom':
-        width = surface_width
-        height = int(min(surface_width, surface_height) * 0.2)
-        for y in range(height):
-            # Calculate alpha value based on x position
-            alpha = int((y / height) * 255)
-            strip = pygame.Surface((width, 1), pygame.SRCALPHA)
-            strip.fill((255, 255, 255, alpha))  # Set the color with alpha
-            # Draw the rectangle onto the screen
-            surface.blit(strip, (0, (surface_height - height) + y))
+    def draw_gradient_frame(self, surface, surface_width, surface_height, position):
+        if position == 'left':
+            width = int(min(surface_width, surface_height) * 0.2)
+            height = surface_height
+            for x in range(width):
+                # Calculate alpha value based on x position
+                alpha = 255 - int((x / width) * 255)
+                strip = pygame.Surface((1, height), pygame.SRCALPHA)
+                strip.fill((255, 255, 255, alpha))  # Set the color with alpha
+                surface.blit(strip, (x, 0))  # Draw the rectangle onto the screen
+        if position == 'right':
+            width = int(min(surface_width, surface_height) * 0.2)
+            height = surface_height
+            for x in range(width):
+                # Calculate alpha value based on x position
+                alpha = int((x / width) * 255)
+                strip = pygame.Surface((1, height), pygame.SRCALPHA)
+                strip.fill((255, 255, 255, alpha))  # Set the color with alpha
+                # Draw the rectangle onto the screen
+                surface.blit(strip, ((surface_width - width) + x, 0))
+        if position == 'top':
+            width = surface_width
+            height = int(min(surface_width, surface_height) * 0.2)
+            for y in range(height):
+                # Calculate alpha value based on x position
+                alpha = 255 - int((y / height) * 255)
+                strip = pygame.Surface((width, 1), pygame.SRCALPHA)
+                strip.fill((255, 255, 255, alpha))  # Set the color with alpha
+                surface.blit(strip, (0, y))  # Draw the rectangle onto the screen
+        if position == 'bottom':
+            width = surface_width
+            height = int(min(surface_width, surface_height) * 0.2)
+            for y in range(height):
+                # Calculate alpha value based on x position
+                alpha = int((y / height) * 255)
+                strip = pygame.Surface((width, 1), pygame.SRCALPHA)
+                strip.fill((255, 255, 255, alpha))  # Set the color with alpha
+                # Draw the rectangle onto the screen
+                surface.blit(strip, (0, (surface_height - height) + y))
